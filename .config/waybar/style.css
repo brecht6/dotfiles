@@ -137,7 +137,7 @@
     color: #888888;
 }
 
-#workspaces button.focus {
+#workspaces button.focused {
     border-color: #4c7899;
     color: white;
     background-color: #285577;
