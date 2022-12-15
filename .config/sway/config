@@ -1,0 +1,109 @@
+# keyboard layout
+input * xkb_layout "be"
+
+# Variables
+set $mod Mod4
+set $term alacritty
+set $menu tofi-run | xargs swaymsg exec --
+
+# Output configuration
+output eDP-1 enable mode 1920x1080@60Hz scale 1.3 position 0 370
+output HDMI-A-2 enable mode 1920x1080@120Hz position 1472 0
+
+# Wallpaper
+output * bg ~/Pictures/wallpaper.jpg fill
+
+# Shortcut output
+bindsym $mod+Shift+F12 exec swaymsg "output HDMI-A-2 disable"
+bindsym $mod+Shift+F10 exec swaymsg "output eDP-1 disable"
+bindsym $mod+Shift+F11 exec swaymsg "output HDMI-A-2 mode 1920x1080@120Hz position 1472 0 enable" && swaymsg "output eDP-1 mode 1920x1080@60Hz scale 1.3 position 0 370 enable"
+
+# Idle configuration
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -c 000000'
+
+# Key bindings
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Workspaces:
+    # Switch to workspace
+    bindsym $mod+ampersand exec "swaysome focus 1"
+    bindsym $mod+eacute exec "swaysome focus 2"
+    bindsym $mod+quotedbl exec "swaysome focus 3"
+    bindsym $mod+apostrophe exec "swaysome focus 4"
+    bindsym $mod+parenleft exec "swaysome focus 5"
+    bindsym $mod+section exec "swaysome focus 6"
+    bindsym $mod+egrave exec "swaysome focus 7"
+    bindsym $mod+exclam exec "swaysome focus 8"
+    bindsym $mod+ccedilla exec "swaysome focus 9"
+    bindsym $mod+agrave exec "swaysome focus 10"
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+ampersand exec "swaysome move 1"
+    bindsym $mod+Shift+eacute exec "swaysome move 2"
+    bindsym $mod+Shift+quotedbl exec "swaysome move 3"
+    bindsym $mod+Shift+apostrophe exec "swaysome move 4"
+    bindsym $mod+Shift+parenleft exec "swaysome move 5"
+    bindsym $mod+Shift+section exec "swaysome move 6"
+    bindsym $mod+Shift+egrave exec "swaysome move 7"
+    bindsym $mod+Shift+exclam exec "swaysome move 8"
+    bindsym $mod+Shift+ccedilla exec "swaysome move 9"
+    bindsym $mod+Shift+agrave exec "swaysome move 10"
+    bindsym $mod+o exec "swaysome next_output"
+    bindsym $mod+Shift+o exec "swaysome prev_output"
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+# Waybar
+bar swaybar_command waybar
+
+# Gaps
+gaps inner 5
+gaps outer 5
+
+# Remove window titlebar
+default_border pixel 2
+
+# Lock feature
+bindsym $mod+l exec swaylock -c 000000
+
+# Volume keys
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set 20%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 20%-
+
+# Shutdown and reboot
+bindsym $mod+Delete exec " loginctl poweroff now"
+bindsym $mod+Shift+Delete exec "loginctl reboot"
+
+# Firefox
+bindsym $mod+Shift+f exec firefox
+
+# Screenshot
+bindsym $mod+Shift+w exec grimshot copy area
