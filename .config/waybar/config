@@ -52,8 +52,8 @@
     },
 
     "clock#time": {
-        "interval": 1,
-        "format": "{:%H:%M:%S}  ",
+        "interval": 60,
+        "format": "{:%H:%M}",
         "tooltip": false
     },
 
@@ -120,3 +120,6 @@
         "spacing": 10
     }
 }
+
+
+
