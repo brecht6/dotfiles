@@ -1,4 +1,4 @@
-#Used applications:
+# Used applications:
   - wallutils
   - swaysome
   - sway
