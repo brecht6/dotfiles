@@ -11,3 +11,4 @@
   - wl-clipboard
   - firefox
   - alacritty
+  - brightnessctl
