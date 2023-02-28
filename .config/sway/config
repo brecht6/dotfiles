@@ -9,15 +9,15 @@ set $menu tofi-drun | xargs swaymsg exec --
 
 # Output configuration
 output eDP-1 enable mode 1920x1080@60Hz scale 1.3 position 0 370
-output HDMI-A-2 enable mode 1920x1080@120Hz position 1472 0
+output HDMI-A-2 disable mode 1920x1080@120Hz position 1472 0
 
 # Wallpaper
 exec_always setrandom /home/brecht/Pictures/Wallpapers/
 
 # Shortcut output
-bindsym $mod+Shift+F12 exec swaymsg "output HDMI-A-2 disable"
+bindsym $mod+Shift+F12 exec swaymsg "output HDMI-A-2 enable mode 1920x1080@120Hz position 1472 0"
 bindsym $mod+Shift+F10 exec swaymsg "output eDP-1 disable"
-bindsym $mod+Shift+F11 exec swaymsg "output HDMI-A-2 mode 1920x1080@120Hz position 1472 0 enable" && swaymsg "output eDP-1 mode 1920x1080@60Hz scale 1.3 position 0 370 enable"
+bindsym $mod+Shift+F11 exec swaymsg "output HDMI-A-2 disable mode 1920x1080@120Hz position 1472 0" && swaymsg "output eDP-1 mode 1920x1080@60Hz scale 1.3 position 0 370 enable"
 
 # Idle configuration
 exec swayidle -w \
@@ -111,3 +111,6 @@ bindsym $mod+Shift+w exec grimshot copy area
 
 # Init workspaces for every screen
 exec "swaysome init 1"
+
+# Shortcut for random wallpaper
+bindsym $mod+p exec setrandom /home/brecht/Pictures/Wallpapers/
