@@ -1,6 +1,13 @@
-# keyboard layout
+# Keyboard layout
 input * xkb_layout "be"
 input * xkb_numlock enabled
+
+# Touchpad
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    scroll_factor 0.5
+}
 
 # Variables
 set $mod Mod4
@@ -103,6 +110,12 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 20%-
 bindsym $mod+Delete exec "shutdown now"
 bindsym $mod+Shift+Delete exec "reboot"
 
+# Playback control
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play
+
 # Firefox
 bindsym $mod+Shift+f exec firefox
 
@@ -114,3 +127,6 @@ exec "swaysome init 1"
 
 # Shortcut for random wallpaper
 bindsym $mod+p exec setrandom /home/brecht/Pictures/Wallpapers/
+
+# Autotiling
+exec_always autotiling
