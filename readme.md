@@ -18,5 +18,6 @@ this are the dotfiles of my linux setup with the sway window manager.
   - xorg-xwayland
   - pulseaudio
   - ttf-font-awesome
+  - playerctl
 
 ###### if you have any comments on my setup, let me know in the issues tab
